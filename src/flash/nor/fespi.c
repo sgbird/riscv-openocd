@@ -781,6 +781,8 @@ static int fespi_probe(struct flash_bank *bank)
 		return ERROR_FAIL;
 
 	retval = fespi_read_flash_id(bank, &id);
+	if (retval != ERROR_OK)
+		return retval;
 
 	if (fespi_enable_hw_mode(bank) != ERROR_OK)
 		return ERROR_FAIL;
